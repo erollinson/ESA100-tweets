@@ -1,52 +1,56 @@
 ---
-title: "A summary of the tweets generated at the 2015 Evolution meeting"
-author: François Michonneau
+title: "A summary of the tweets generated at the 2015 ESA meeting"
+author: EJ Rollinson, forked from François Michonneau
 output:
    html_document:
      toc: true
----
-
----
-
+---  
 
 ```{r, echo=FALSE}
 ## This is the code I used to retrieve the tweets.
 
-## I started to ask the API for 5000 tweets but realized it wasn't
-## enough to get them all, so I did a second call, that reached the
-## limit on how far back it can get.
+#install.packages(c("devtools", "rjson", "bit64", "httr"))
+ 
+#RESTART R session!
+ 
+#library(devtools)
+#install_github("twitteR", username="geoffjentry")
+#library(twitteR)
 
-## To archive the data, I generated a RDS file, that I later exported
-## to CSV and archived on figshare.
+#api_key <- "KH8C5Fl0UrgEXO0OHHCHuj0rn"
+ 
+#api_secret <- "Vg3Y8TZ4C6OLkDvhtQByzIgrLMvm19T4EE0cPM92RfqYoMEDaA"
+ 
+#access_token <- "2724477037-xDm5VDJrwcoxQEFdRbjXmGxbZkTPS6QxxuKsrcf"
+ 
+#access_token_secret <- "6fwyFMmLjZohE2f1ZyLnTuUjEQC9oVzCHiHXbQ0EIdIJC"
+ 
+#setup_twitter_oauth(api_key,api_secret,access_token,access_token_secret)
 
-## tweets <- searchTwitter("#evol2015", n = 5000)
-## saveRDS(tweets, "raw_tweets.rds")
+#require(base64enc)
+#tweets<-searchTwitter("#ESA100", n=10000)
+#saveRDS(tweets, "raw_tweets.rds")
 
-## dt_tweets <- twListToDF(tweets)
-
-## dt_tweets_part1 <- dt_tweets
-
-## tweets_part2 <- searchTwitter("#evol2015", n = 5000, maxID = min(dt_tweets_part1$id))
-## saveRDS(tweets_part2, file = "raw_tweets_part2.rds")
-
-## dt_tweets_part2 <- twListToDF(tweets_part2)
-
-## dt_tweets <- rbind(dt_tweets_part1, dt_tweets_part2)
-## saveRDS(dt_tweets, file = "data_frame_all_tweets.rds")
 ```
 
+
 ```{r, echo=FALSE}
-## dt_tweets <- readRDS(file = "data_frame_all_tweets.rds")
-dt_tweets <- read.csv(file = "evol2015_tweets.csv", stringsAsFactors = FALSE)
+dt_tweets <- readRDS(file = "raw_tweets.rds") 
+
+#dt_tweets <- read.csv(file = "evol2015_tweets.csv", stringsAsFactors = FALSE)
 dt_tweets$created <- as.Date(dt_tweets$created)
 
 library(dplyr)
 library(ggplot2)
+library(knitr)
 library(tidyr)
 library(wesanderson)
 ```
 
 ## About this document
+
+The code generating this document was originally developed by Francois Michonnea (fmic_) for Evolution 2015, and is adapted with minor changes by EJR (ejrollinson) for ESA 2015.
+
 
 This document was generated using RMarkdown, and the source is available on
 GitHub at:
@@ -311,3 +315,4 @@ This work is published from:
       content="US" about="https://github.com/fmichonneau/evol2015-tweets">
   United States</span>.
 </p>
+
