@@ -27,7 +27,11 @@ The code generating this document was originally developed by François Michonne
 
 Here, the code is adapted for the 2015 Ecological Society of America Meeting (ESA100) by Emily J. Rollinson [(katteken)](https://twitter.com/katteken).
 
+<<<<<<< HEAD
 This document was generated using RMarkdown, and the source is [available on GitHub](https://github.com/erollinson/ESA100-tweets). The original code by  [fmichonneau](https://github.com/fmichonneau) is [here](https://github.com/fmichonneau/evol2015-tweets). 
+=======
+This document was generated using RMarkdown, and the source is [available on GitHub](https://github.com/erollinson/ESA100-tweets. [The original code](https://github.com/fmichonneau/evol2015-tweets) is by [fmichonneau](https://github.com/fmichonneau).
+>>>>>>> be211e2225e8268f7991cb60df166759d65db72e
 
 Tweets using the hashtag #ESA100 were aggregated from Twitter using the R package [twitteR](https://cran.r-project.org/web/packages/twitteR/index.html) and the Twitter API.  The aggregated tweets are [available on Figshare](http://dx.doi.org/10.6084/m9.figshare.1512350).
 
@@ -39,8 +43,13 @@ Of the most recent 10k tweets tagged #ESA100 (As of 9:00 PM 8/15/2015):
 
 |Description | n |
 |------------|---|
+<<<<<<< HEAD
 |*Total of original tweets (no retweets):* | `r sum(!dt_tweets$isRetweet)`|
 |*Number of users who tweeted:* | `r length(unique(dt_tweets$screenName))`|
+=======
+|*Total of original tweets (no retweets):* | `r sum(!dt_tweets$isRetweet)`.|
+|*Number of users who tweeted:* | `r length(unique(dt_tweets$screenName))`.|
+>>>>>>> be211e2225e8268f7991cb60df166759d65db72e
 
 ## The 5 most favorited tweets
 
