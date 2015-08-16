@@ -1,15 +1,17 @@
 ---
-title: "A summary of the tweets generated at the 2015 Ecological Society of America meeting (#ESA100)"
-author: EJ Rollinson
+title: A summary of the tweets generated at the 2015 Ecological Society of America
+  meeting (#ESA100)
+author: "EJ Rollinson"
 output:
-   html_document:
-     toc: true
+  html_document:
+    theme: flatly
+    toc: yes
+  pdf_document:
+    toc: yes
 ---  
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, results='hide', message=FALSE}
 dt_tweets <- read.csv("ESA100tweets.csv", stringsAsFactors = FALSE)
-
-#dt_tweets <- read.csv(file = "evol2015_tweets.csv", stringsAsFactors = FALSE)
 dt_tweets$created <- as.Date(dt_tweets$created)
 
 library(dplyr)
@@ -21,13 +23,13 @@ library(wesanderson)
 
 ## About this document
 
-The code generating this document was originally developed by François Michonneau [(fmic_)](https://twitter.com/fmic_) for the 2015 Evolution conference, and since adapted for ICCB-ECCB 2015 by Joona Lehtomäki [(jlehtoma)](https://twitter.com/jlehtoma). H/T to Emily Sessa [(ebsessa)](http://twitter.com/ebsessa) for reproducing this code for the Botany 2015 conference on Twitter, bringing it to my attention.
+The code generating this document was originally developed by François Michonneau [(fmic_)](https://twitter.com/fmic_) for the 2015 Evolution conference, and since adapted for ICCB-ECCB 2015 by Joona Lehtomäki [(jlehtoma)](https://twitter.com/jlehtoma). Thanks also to Emily Sessa [(ebsessa)](http://twitter.com/ebsessa) for reproducing this code for the Botany 2015 conference on Twitter, bringing it to my attention.
 
 Here, the code is adapted for the 2015 Ecological Society of America Meeting (ESA100) by Emily J. Rollinson [(katteken)](https://twitter.com/katteken).
 
-This document was generated using RMarkdown, and the source is available on GitHub at: https://github.com/erollinson(ESA100-tweets (forked from https://github.com/fmichonneau/evol2015-tweets).
+This document was generated using RMarkdown, and the source is [available on GitHub](https://github.com/erollinson/ESA100-tweets). The original code by  [fmichonneau](https://github.com/fmichonneau) is [here](https://github.com/fmichonneau/evol2015-tweets). 
 
-Tweets using the hashtag #ESA100 were aggregated from Twitter using the R package twitteR and the Twitter API.  The aggregated tweets are [available on Figshare] (http://dx.doi.org/10.6084/m9.figshare.1512350).
+Tweets using the hashtag #ESA100 were aggregated from Twitter using the R package [twitteR](https://cran.r-project.org/web/packages/twitteR/index.html) and the Twitter API.  The aggregated tweets are [available on Figshare](http://dx.doi.org/10.6084/m9.figshare.1512350).
 
 This document (and associated code) is released under a CC0 licence.
 
@@ -35,8 +37,10 @@ This document (and associated code) is released under a CC0 licence.
 
 Of the most recent 10k tweets tagged #ESA100 (As of 9:00 PM 8/15/2015):
 
-* Total of original tweets (no retweets): `r sum(!dt_tweets$isRetweet)`.
-* Number of users who tweeted: `r length(unique(dt_tweets$screenName))`.
+|Description | n |
+|------------|---|
+|*Total of original tweets (no retweets):* | `r sum(!dt_tweets$isRetweet)`|
+|*Number of users who tweeted:* | `r length(unique(dt_tweets$screenName))`|
 
 ## The 5 most favorited tweets
 
@@ -242,7 +246,7 @@ ggplot(hi_mean_rt) + geom_bar(aes(x = screenName, y = mean_rt),
 
 The top 100 words among the original tweets.
 
-```{r word-cloud, echo=FALSE}
+```{r word-cloud, echo=FALSE, message=FALSE}
 library(wordcloud)
 
 pal <- wes_palette("Darjeeling", 8, type = "continuous") #brewer.pal(8, "Dark2")
