@@ -1,41 +1,13 @@
 ---
-title: "A summary of the tweets generated at the 2015 ESA meeting"
-author: EJ Rollinson, forked from François Michonneau
+title: "A summary of the tweets generated at the 2015 Ecological Society of America meeting (#ESA100)"
+author: EJ Rollinson
 output:
    html_document:
      toc: true
 ---  
 
 ```{r, echo=FALSE}
-## This is the code I used to retrieve the tweets.
-
-#install.packages(c("devtools", "rjson", "bit64", "httr"))
- 
-#RESTART R session!
- 
-#library(devtools)
-#install_github("twitteR", username="geoffjentry")
-#library(twitteR)
-
-#api_key <- "KH8C5Fl0UrgEXO0OHHCHuj0rn"
- 
-#api_secret <- "Vg3Y8TZ4C6OLkDvhtQByzIgrLMvm19T4EE0cPM92RfqYoMEDaA"
- 
-#access_token <- "2724477037-xDm5VDJrwcoxQEFdRbjXmGxbZkTPS6QxxuKsrcf"
- 
-#access_token_secret <- "6fwyFMmLjZohE2f1ZyLnTuUjEQC9oVzCHiHXbQ0EIdIJC"
- 
-#setup_twitter_oauth(api_key,api_secret,access_token,access_token_secret)
-
-#require(base64enc)
-#tweets<-searchTwitter("#ESA100", n=10000)
-#saveRDS(tweets, "raw_tweets.rds")
-
-```
-
-
-```{r, echo=FALSE}
-dt_tweets <- readRDS(file = "raw_tweets.rds") 
+dt_tweets <- read.csv("ESA100tweets.csv", stringsAsFactors = FALSE)
 
 #dt_tweets <- read.csv(file = "evol2015_tweets.csv", stringsAsFactors = FALSE)
 dt_tweets$created <- as.Date(dt_tweets$created)
@@ -49,30 +21,22 @@ library(wesanderson)
 
 ## About this document
 
-The code generating this document was originally developed by Francois Michonnea (fmic_) for Evolution 2015, and is adapted with minor changes by EJR (ejrollinson) for ESA 2015.
+The code generating this document was originally developed by François Michonneau [(fmic_)](https://twitter.com/fmic_) for the 2015 Evolution conference, and since adapted for ICCB-ECCB 2015 by Joona Lehtomäki [(jlehtoma)](https://twitter.com/jlehtoma). H/T to Emily Sessa [(ebsessa)](http://twitter.com/ebsessa) for reproducing this code for the Botany 2015 conference on Twitter, bringing it to my attention.
 
+Here, the code is adapted for the 2015 Ecological Society of America Meeting (ESA100) by Emily J. Rollinson [(katteken)](https://twitter.com/katteken).
 
-This document was generated using RMarkdown, and the source is available on
-GitHub at:
-[https://github.com/fmichonneau/evol2015-tweets](https://github.com/fmichonneau/evol2015-tweets).
+This document was generated using RMarkdown, and the source is available on GitHub at: https://github.com/erollinson(ESA100-tweets (forked from https://github.com/fmichonneau/evol2015-tweets).
 
-Pull requests to add other figures or fix bugs are welcome.
-
-The dataset used here is available as a CSV file from
-[figshare](http://figshare.com/articles/Evolution_2015_tweets/1470180).
+Tweets using the hashtag #ESA100 were aggregated from Twitter using the R package twitteR and the Twitter API.  The aggregated tweets are [available on Figshare] (http://dx.doi.org/10.6084/m9.figshare.1512350).
 
 This document (and associated code) is released under a CC0 licence.
 
-If you have questions or comments, I am on twitter at
-[fmic_](https://twitter.com/fmic_) or by email at [francois.michonneau@gmail.com](mailto:francois.michonneau@gmail.com)
-
-
 ## Basic summary
 
-* Total number of tweets with the #Evol2015 hashtag between June 22nd, and July 1st 2015: `r nrow(dt_tweets)`.
+Of the most recent 10k tweets tagged #ESA100 (As of 9:00 PM 8/15/2015):
+
 * Total of original tweets (no retweets): `r sum(!dt_tweets$isRetweet)`.
 * Number of users who tweeted: `r length(unique(dt_tweets$screenName))`.
-
 
 ## The 5 most favorited tweets
 
@@ -307,12 +271,12 @@ dt_tweets %>%
   To the extent possible under law,
   <a rel="dct:publisher"
      href="https://github.com/fmichonneau/evol2015-tweets">
-    <span property="dct:title">Francois Michonneau</span></a>
+    <span property="dct:title">Emily J. Rollinson</span></a>
   has waived all copyright and related or neighboring rights to
-  <span property="dct:title">Summary of tweets at the 2015 Evolution conference</span>.
+  <span property="dct:title">Summary of tweets at the 2015 Ecological Society of America conference</span>.
 This work is published from:
 <span property="vcard:Country" datatype="dct:ISO3166"
-      content="US" about="https://github.com/fmichonneau/evol2015-tweets">
+      content="US" about="https://github.com/erollinson/ESA100-tweets">
   United States</span>.
 </p>
 
